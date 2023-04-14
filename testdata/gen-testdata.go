@@ -14,6 +14,7 @@ func main() {
 }
 
 func CreateTestDataByFileSize(fileSizeKB int64, fileName string) {
+	os.MkdirAll("./testdata/generated", 0755)
 	file, err := os.OpenFile(fmt.Sprintf("./testdata/generated/%s", fileName), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {

@@ -10,6 +10,10 @@ vet: ## Run go vet against code.
 test: fmt vet ## Run tests.
 	go test ./...
 
+.PHONY: bench
+banch: fmt vet ## Run tests.
+	go test -bench=. ./...
+
 .PHONY: gen-testdata
 gen-testdata: ## Run tests.
 	go run ./testdata/gen-testdata.go
