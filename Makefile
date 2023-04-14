@@ -20,4 +20,4 @@ gen-testdata: ## Run tests.
 
 .PHONY: build
 build: fmt vet test ## Build binary.
-	go build -o bin/ch-home-task cli/main.go
+	go build -o bin/ch-home-task main.go

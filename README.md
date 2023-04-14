@@ -5,12 +5,27 @@
 * The solution is implemented entirely in GoLang.
 * The solution aims to be efficient and minimize memory consumption as much as possible.
 
-## 
+## Explanation
+* My solution is compose from 2 entirely decopled component:
+  * **[ValuedUrlIterator](pkg/valuedurliterator/valuedurliterator.go#L12)** - This component takes a string buffer reader and iterates through the buffer line by line, deserializing each line into a valued URL (as described in the task description) efficiently, without loading everything into memory at once.
+  * **[TopNValuedUrls](pkg/topnvaluedurls/topnvaluedurls.go#L8)** - This component maintains a top **N** list (in our case, top 10) of valued URLs. It uses a **Heap MAX Tree** (similar to a PriorityQueue) to manage a slice of valued URLs with a given size. This is the most efficient way to maintain an ordered list given the nature of my code, which deals with a data stream of valued URLs. For each valued URL that enters the list:
+    *  The **Heap MAX Tree** puts the URL in the right place in the list with a complexity of O(log n).
+    * If the length of the list exceeds **N** (the initial size of the top list), the smallest valued URL is popped from the list while keeping the order intact, with a complexity of O(1) (since the smallest valued URL is always the last item in the slice).
 
+* The [main function](main.go#L13) scan the `stdin` for a file path containing valued URLs, and then utilizes the combination of the two components mentioned above to initiate the process of printing the top 10 valued URLs.
+* All the critical-path functionality is tested, by executing:
+  ```sh
+  $> make test
+  ```
 ## Usage
-### Build
 > Make sure that you have go language install on your meching (e.g. `brew install go` on mac)
->
+
+### Installion
+```sh
+$> go install github.com/itamartempel/ch-home-task@latest
+```
+### Or Build manually
+
 
 Clone and build the repo:
 ```sh
