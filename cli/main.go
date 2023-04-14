@@ -2,11 +2,12 @@ package main
 
 import (
 	"bufio"
-	"ch-home-task/pkg/topnvaluedurls"
-	"ch-home-task/pkg/valuedurliterator"
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/itamartempel/ch-home-task/pkg/topnvaluedurls"
+	"github.com/itamartempel/ch-home-task/pkg/valuedurliterator"
 )
 
 func main() {
