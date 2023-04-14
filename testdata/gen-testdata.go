@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"path"
 )
 
 func main() {
@@ -13,9 +14,12 @@ func main() {
 	// CreateTestDataByFileSize(1024*1024, "1GB.txt")
 }
 
+const baseDir = "./testdata/generated"
+
 func CreateTestDataByFileSize(fileSizeKB int64, fileName string) {
-	os.MkdirAll("./testdata/generated", 0755)
-	file, err := os.OpenFile(fmt.Sprintf("./testdata/generated/%s", fileName), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	os.MkdirAll(baseDir, 0755)
+	filePath := path.Join(baseDir, fileName)
+	file, err := os.OpenFile(filePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		fmt.Println("Could not open", fileName)
@@ -39,5 +43,5 @@ func CreateTestDataByFileSize(fileSizeKB int64, fileName string) {
 		i++
 	}
 
-	fmt.Println(fileName, " Created successfully")
+	fmt.Printf("%s Created successfully\n", filePath)
 }
