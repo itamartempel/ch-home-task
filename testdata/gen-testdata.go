@@ -7,14 +7,14 @@ import (
 )
 
 func main() {
-	CreateTestDataByFileSize(1024, "1M.txt")
-	// CreateTestDataByFileSize(1024*10, "10M.txt")
-	// CreateTestDataByFileSize(1024*100, "100M.txt")
-	// CreateTestDataByFileSize(1024*1024, "1G.txt")
+	CreateTestDataByFileSize(1024, "1MB.txt")
+	CreateTestDataByFileSize(1024*10, "10MB.txt")
+	CreateTestDataByFileSize(1024*100, "100MB.txt")
+	// CreateTestDataByFileSize(1024*1024, "1GB.txt")
 }
 
 func CreateTestDataByFileSize(fileSizeKB int64, fileName string) {
-	file, err := os.OpenFile(fmt.Sprintf("./testdata/%s", fileName), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	file, err := os.OpenFile(fmt.Sprintf("./testdata/generated/%s", fileName), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 
 	if err != nil {
 		fmt.Println("Could not open", fileName)
